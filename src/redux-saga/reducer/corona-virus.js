@@ -1,13 +1,13 @@
 import * as types from '../action/type';
 
 const initialState = {
-  loading: false,
+  loading: true,
   virus: {},
   error: null
 }
 
 // trong nay chi tiep nhan va lam viec voi cac action cua saga
-export const coronaReducer = (state = initialState, action) {
+export const coronaReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.START_GET_DATA :
       return {

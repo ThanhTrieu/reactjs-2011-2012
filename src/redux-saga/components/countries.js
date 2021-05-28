@@ -1,5 +1,8 @@
 import React from 'react';
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, Skeleton } from 'antd';
+import { useSelector } from 'react-redux';
+import { getDataCountriesVirus } from '../reselect/conrona-reselect';
+import { createStructuredSelector } from 'reselect';
 
 const columns = [
   {
@@ -43,14 +46,22 @@ const columns = [
     key: 'TotalRecovered'
   }
 ];
-const data = [];
+
 
 const CountriesCorona = () => {
+  const { data } = useSelector(createStructuredSelector({
+    data: getDataCountriesVirus
+  }));
+
+  if(data === null){
+    return( <Skeleton active />)
+  } 
+
   return (
     <>
       <Row style={{ margin: '20px 0px' }}>
         <Col span={24}>
-          <Table columns={columns} dataSource={data} />
+          <Table rowKey="ID" columns={columns} dataSource={data} />
         </Col>
       </Row>
     </>
