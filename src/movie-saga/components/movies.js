@@ -1,23 +1,37 @@
 import React from 'react';
 import { Row, Col, Card } from 'antd';
+import { getDataMovies } from '../reselect/movie-reselect';
+import { useSelector } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 
 const { Meta } = Card;
 
 const Movies = () => {
+  const { dataMovies } = useSelector(createStructuredSelector({
+    dataMovies: getDataMovies
+  }));
+
+  if(dataMovies === null){
+    return null;
+  }
+
   return (
     <>
       <Row style={{ margin: '30px 0px' }}>
         <Col span={20} offset={2}>
           <Row>
-            <Col span={6}>
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <Meta title="Europe Street beat" />
-              </Card>
-            </Col>
+            {dataMovies.map((item,key) => (
+              <Col span={6} key={key}>
+                <Card
+                  hoverable
+                  style={{ width: 240 }}
+                  cover={<img alt={item.title} src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />}
+                >
+                  <Meta title={item.title} />
+                </Card>
+              </Col>
+            ))}
           </Row>
         </Col>
       </Row>

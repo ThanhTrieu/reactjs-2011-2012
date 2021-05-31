@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import App from './movie-saga/index';
+import App from './redux-02/index';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
