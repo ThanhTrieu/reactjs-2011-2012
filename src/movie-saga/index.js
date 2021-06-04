@@ -1,4 +1,4 @@
-import MoviePage from './pages/movie';
+import MoviePage from './route/web';
 import configStore from './store/config-store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
