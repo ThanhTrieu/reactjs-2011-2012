@@ -3,8 +3,9 @@ import configStore from './store/config-store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Skeleton } from 'antd';
+import { ConnectedRouter } from 'connected-react-router';
 
-const { store, persistor } = configStore();
+const { store, persistor, history } = configStore();
 
 const AppMovie = () => {
   return (
@@ -13,7 +14,9 @@ const AppMovie = () => {
         loading={<Skeleton active />}
         persistor={persistor}
       >
-        <MoviePage/>
+        <ConnectedRouter history={history}>
+          <MoviePage/>
+        </ConnectedRouter>
       </PersistGate>
     </Provider>
   )

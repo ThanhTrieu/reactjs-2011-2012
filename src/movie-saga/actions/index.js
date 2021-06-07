@@ -1,5 +1,10 @@
 import * as types from './type';
 
+export const getDataDetailMovie = ( id ) => ({
+  type: types.GET_DETAIL_MOVIE,
+  id
+});
+
 export const searchMovie = (keyword) => ({
   type: types.SEARCH_MOVIE,
   keyword

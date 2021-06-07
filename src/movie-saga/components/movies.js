@@ -3,7 +3,8 @@ import { Row, Col, Card } from 'antd';
 import { getDataMovies } from '../reselect/movie-reselect';
 import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
+import { Link } from 'react-router-dom';
+import slugify from 'react-slugify';
 
 const { Meta } = Card;
 
@@ -23,13 +24,15 @@ const Movies = () => {
           <Row>
             {dataMovies.map((item,key) => (
               <Col span={6} key={key}>
-                <Card
-                  hoverable
-                  style={{ width: 240 }}
-                  cover={<img alt={item.title} src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />}
-                >
-                  <Meta title={item.title} />
-                </Card>
+                <Link to={`/detail-movie/${slugify(item.title)}~${item.id}`}>
+                  <Card
+                    hoverable
+                    style={{ width: 240 }}
+                    cover={<img alt={item.title} src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />}
+                  >
+                    <Meta title={item.title} />
+                  </Card>
+                </Link>
               </Col>
             ))}
           </Row>
